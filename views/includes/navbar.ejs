@@ -1,0 +1,213 @@
+<style>
+  .btn-search {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem;
+  }
+
+  .btn-search:hover {
+    background-color: #ff0011;
+    color: #fff;
+  }
+
+  .btn-search i {
+    display: inline;
+    margin-right: 0.5rem;
+  }
+
+  .search-input {
+    border-radius: 25px;
+    padding: 0.5rem 3rem;
+  }
+
+  .user-auth {
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+
+  .logout {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .logout:hover {
+    background-color: red;
+    color: #fff;
+  }
+
+  .new-listing:hover {
+    color: #fff !important;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-brand span {
+      font-size: 1rem;
+    }
+
+    .btn-search {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .search-input {
+      padding: 0.4rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .navbar-nav {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .user-auth {
+      margin: 0.5rem 0;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+    }
+
+    .navbar-toggler-icon {
+      font-size: 1.5rem;
+    }
+
+    .dropdown {
+      margin-top: 1rem;
+    }
+
+    .dropdown-menu {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .navbar-nav {
+      margin-top: 1rem;
+    }
+
+    .btn-search i {
+      margin-right: 0.3rem;
+    }
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .dropdown,
+  .logout {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-nav.ms-auto {
+    margin-left: auto;
+  }
+
+  .navbar-nav.search-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .navbar-nav.search-container.logged-in {
+    justify-content: flex-end;
+  }
+</style>
+
+<nav
+  class="navbar navbar-expand-md bg-light shadow-sm border-bottom sticky-top"
+  role="navigation"
+  aria-label="Main Navigation"
+>
+  <div class="container">
+    <!-- Navbar Brand -->
+    <a
+      class="navbar-brand d-flex align-items-center"
+      href="/listings"
+      aria-label="Homepage"
+    >
+      <i class="fa-regular fa-compass me-2" aria-hidden="true"></i>
+      <span class="fw-bold">WanderLux.com</span>
+    </a>
+
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler border-0"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible Menu -->
+    <div
+      class="collapse navbar-collapse justify-content-between"
+      id="navbarNavAltMarkup"
+    >
+      <!-- Left Links -->
+      <div class="d-flex align-items-center">
+        <a class="nav-link fw-semibold" href="/listings">All Listings</a>
+        <a
+          class="nav-link btn btn-primary text-black px-3 py-2 rounded-pill ms-2 new-listing"
+          href="/listings/new"
+          role="button"
+          >Add a New Listing!</a
+        >
+      </div>
+
+      <!-- Search Option -->
+      <div
+        class="navbar-nav search-container <% if (currUser) { %> logged-in <% } %>"
+      >
+        <form class="d-flex mx-auto" role="search" style="max-width: 400px">
+          <input
+            class="form-control me-2 search-input"
+            type="search"
+            placeholder="Search Listing..."
+            aria-label="Search"
+          />
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Links -->
+      <div class="navbar-nav ms-auto">
+        <% if (!currUser) { %>
+        <a class="nav-link fw-semibold user-auth" href="/signup">Sign-Up</a>
+        <a class="nav-link fw-semibold user-auth login" href="/login">Login</a>
+        <% } %> <% if (currUser) { %>
+        <!-- Burger Menu -->
+        <div class="dropdown">
+          <button
+            class="btn btn-outline-dark dropdown-toggle"
+            type="button"
+            id="burgerMenuButton"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="burgerMenuButton">
+            <li>
+              <a class="dropdown-item" href="/developer">Know the Developer!</a>
+            </li>
+          </ul>
+        </div>
+
+        <a class="nav-link fw-semibold user-auth logout" href="/logout"
+          >Logout</a
+        >
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,334 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+
+  main {
+    padding: 2rem;
+    background: #fff;
+    margin: 2rem auto;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .about-project {
+    margin-top: 70px;
+  }
+
+  .disclaimer {
+    margin-top: 20px;
+    padding: 1rem;
+    background-color: #ffeb3b;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+  }
+
+  .disclaimer-icon {
+    font-size: 1.5rem;
+  }
+
+  .about-me {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    font-size: 1rem;
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .about-me li {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f9f9f9, #e6e6e6);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+
+  .about-me li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  }
+
+  .about-me li::before {
+    content: "💡";
+    font-size: 1.5rem;
+    color: #3f51b5;
+    margin-right: 1rem;
+  }
+
+  .about-me li .skill-title {
+    font-weight: bold;
+    color: #3f51b5;
+    font-size: 1.1rem;
+  }
+
+  .about-me li .skill-content {
+    margin-left: 0.5rem;
+    color: #555;
+  }
+
+  .box {
+    border: none;
+    padding: 20px;
+    background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+    color: #333;
+  }
+
+  .box::before {
+    content: "🔥";
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+    color: #d9534f;
+  }
+
+  .box:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #f0f0f0, #d8d8d8);
+  }
+
+  .box p {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+  .social-media {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .social-media a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #3f51b5, #1a237e);
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .social-media a:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: linear-gradient(135deg, #5c6bc0, #283593);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .social-media i {
+    font-size: 1.6rem;
+  }
+
+  .btn-resume {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 0.8rem 1.5rem;
+    background-color: #3f51b5;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-resume:hover {
+    background-color: #1a237e;
+    transform: translateY(-2px);
+  }
+
+  /* Responsive design for tablets and smaller screens */
+  @media (max-width: 768px) {
+    .about-me {
+      gap: 1rem;
+    }
+
+    .about-me li {
+      flex-direction: column;
+      text-align: center;
+      padding: 0.8rem;
+    }
+
+    .about-me li::before {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-me li .skill-title {
+      font-size: 1rem;
+    }
+
+    .about-me li .skill-content {
+      margin-left: 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Responsive design for mobile phones */
+  @media (max-width: 480px) {
+    .about-me {
+      gap: 0.8rem;
+    }
+
+    .about-me li {
+      padding: 0.6rem;
+    }
+
+    .about-me li .skill-title {
+      font-size: 0.95rem;
+    }
+
+    .about-me li .skill-content {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<h1 class="mt-3">About the Developer:</h1>
+<main>
+  <section>
+    <h2>👋 Hi, I'm Satinder Singh!</h2>
+    <p>
+      I'm passionate about web development and creating seamless user
+      experiences. Here's more about me:
+    </p>
+
+    <ul class="about-me">
+      <li class="skill">
+        <span class="skill-title">🛠️ Experience:</span>
+        <span class="skill-content">3+ years in web development</span>
+      </li>
+      <li class="skill">
+        <span class="skill-title">💻 Skills:</span>
+        <span class="skill-content"
+          >HTML, CSS, JavaScript, Node.js, Express.js, EJS, SQL, NoSQL, and
+          MongoDB</span
+        >
+      </li>
+      <li class="skill">
+        <span class="skill-title">🎓 Education:</span>
+        <span class="skill-content"
+          >Bachelor's degree in Computer Science and Applications from REVA
+          University</span
+        >
+      </li>
+      <li class="skill">
+        <span class="skill-title">🌐 Contributions:</span>
+        <span class="skill-content"
+          >Contributor to open-source projects on GitHub</span
+        >
+      </li>
+      <li class="skill">
+        <span class="skill-title">💡 Future Goals:</span>
+        <span class="skill-content"
+          >Master full-stack development and explore AI integration</span
+        >
+      </li>
+      <li class="skill">
+        <span class="skill-title">🤝 Soft Skills:</span>
+        <span class="skill-content"
+          >Problem-solving and strong communication</span
+        >
+      </li>
+      <li class="skill">
+        <span class="skill-title">📚 Hobbies:</span>
+        <span class="skill-content"
+          >Watching aviation documentaries and flying airplanes</span
+        >
+      </li>
+      <li class="skill">
+        <span class="skill-title">📫 Contact:</span>
+        <span class="skill-content">satindersinghsall111@gmail.com</span>
+      </li>
+    </ul>
+
+    <div class="social-media mt-5">
+      <a
+        href="https://www.linkedin.com/in/satinder-singh-sall-b62049204/"
+        target="_blank"
+        title="LinkedIn"
+      >
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a
+        href="https://github.com/SatinderSinghSall"
+        target="_blank"
+        title="GitHub"
+      >
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://x.com/SallSatinder" target="_blank" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a
+        href="https://www.instagram.com/satindersinghsall/"
+        target="_blank"
+        title="Instagram"
+      >
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+    <a href="../my-resume/Satinder_Resume.pdf" class="btn-resume" download
+      >🪴 Download My Resume! 🪴</a
+    >
+
+    <div class="box mt-5 mb-5">
+      <p>
+        "Satinder's dedication and skill have greatly contributed to our
+        project’s success." <br />
+        — A Colleague
+      </p>
+    </div>
+
+    <h2>🔍 About the Project:</h2>
+    <p>
+      The <strong>WanderLux website</strong> is a project developed for
+      <em>educational purposes</em> to demonstrate my proficiency in modern web
+      development technologies. This project is not designed to infringe on any
+      trademarks or copyrights but serves as a comprehensive showcase of my
+      expertise in <code>HTML</code>, <code>CSS</code>, <code>JavaScript</code>,
+      <code>Node.js</code>, <code>Express.js</code>, as well as
+      <code>SQL</code> and <code>NoSQL</code> databases, including
+      <code>MongoDB</code>.
+    </p>
+
+    <p class="disclaimer">
+      <span class="disclaimer-icon">⚠️</span> Disclaimer: The content and design
+      here are for demonstration purposes only.
+    </p>
+  </section>
+</main>
+
+<h2>Thank You.</h2>
+<pre>
+  Regards,
+  Software Developer,
+  Satinder Singh Sall.
+</pre>
